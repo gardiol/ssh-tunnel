@@ -6,7 +6,6 @@ then
 else
 	CONFIG_PATH=$1
 fi
-
 source $CONFIG_PATH/tunnel.conf
 
 if [ "$USER" != "$RUN_AS_USER" ]
@@ -23,6 +22,8 @@ function debug_print()
 function log_path_tag()
 {
 	echo $LOG_PATH/$1
+}
+
 function print_log()
 {
 	TAG=$1
@@ -37,7 +38,7 @@ function add_element()
         local TMP=$(eval echo \$$VAR)
         while [ "$1" != "" ]
         do
-		if [ -z $TMP ]; then TMP="$1"; else; TMP+=" $1"; fi
+		if [ -z $TMP ]; then TMP="$1"; else TMP+=" $1"; fi
                 shift
         done
         eval export $VAR=\"$TMP\"
@@ -57,7 +58,7 @@ function del_element()
                 done
                 if [ $X -eq 0 ]
                 then
-			if [ -z $TMP ]; then TMP="$1"; else; TMP+=" $i"; fi
+			if [ -z $TMP ]; then TMP="$1"; else TMP+=" $i"; fi
                 fi
         done
         eval export $VAR=\"$TMP\"
