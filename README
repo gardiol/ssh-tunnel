@@ -1,0 +1,32 @@
+
+By Willy Gardiol, provided under the GPLv3 License. https://www.gnu.org/licenses/gpl-3.0.html
+Publicly available at: https://github.com/gardiol/ssh-tunnel
+You can contact me at willy@gardiol.org
+
+===
+
+Please refer to https://wiki.gardiol.org/doku.php?id=router:ssh_tunnel
+
+This is a bash script that can create for you resilient SSH tunnels from your home server to one or more extern.
+
+Check the conf/tunnel.conf file and adapt to your needs.
+
+Create one or more "tunnel" files under the tunnels folder.
+For example call this "external-server":
+REMOTE_SERVER=99.99.99.99
+REMOTE_SERVER_SSH_PORT=222 # remote-server SSH port
+HOME_SERVER_REMOTE_SSH_PORT=2022 # home-server SSH port mapped on remote server
+#SSH_IDENTITY=/root/.ssh/id_rsa.tunnel #optional, if you need a different SSH identity
+#REMOTE_USER=tunnel # optional remote server username if different from local server username.
+
+# note: SSH remote access is created automatically, no need to specify it below.
+
+# tunnels for home access from remote
+REMOTE_TO_HOME=\
+"127.0.0.1:8080:127.0.0.1:80"\
+"127.0.0.1:8443:127.0.0.1:8443"
+
+# tunnels for remote access from home
+HOME_TO_REMOTE=
+
+
